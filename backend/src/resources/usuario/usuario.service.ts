@@ -3,12 +3,12 @@ import bcrypt from 'bcryptjs';
 import { Usuario } from '../../models/Usuario';
 import { UsuarioDto} from './usuario.types';
 
-export const getAllUsuarios = async (): Promise<Usuario[]> => {
+export const ListarUsuarios = async (): Promise<Usuario[]> => {
     const usuarios = await Usuario.findAll();
     return usuarios.map((p) => p.toJSON());
 };
 
-export const createUsuario = async (usuario: UsuarioDto): Promise<UsuarioDto> => {
+export const criarUsuario = async (usuario: UsuarioDto): Promise<UsuarioDto> => {
 
     const rounds = parseInt(process.env.SALT_ROUNDS! as string);
     const salt = await bcrypt.genSalt(rounds);
@@ -21,21 +21,21 @@ export const createUsuario = async (usuario: UsuarioDto): Promise<UsuarioDto> =>
     return newUsuarioSemSenha;
 }
 
-export const getUsuario = async (id: string): Promise<Usuario | null> => {
+export const lerUsuario = async (id: string): Promise<Usuario | null> => {
     return await Usuario.findOne({ where: { id } });
 };
 
-export const updateUsuario = async (
+export const atualizarUsuario = async (
     id: string,
     usuario: UsuarioDto,
 ): Promise<number | null> => {
-    const usr = await getUsuario(id);
+    const usr = await lerUsuario(id);
     if (usr === null) return null;
     const [affectedCount] = await Usuario.update(usuario, { where: { id } });
     return affectedCount;
 };
 
-export const buscaUsuarioPorEmail = async (email: string): Promise<Usuario | null> => {
+export const buscarUsuarioPorEmail = async (email: string): Promise<Usuario | null> => {
     return await Usuario.findOne(
         {
             attributes:['id', 'tipoUsuarioId', 'nome', 'email', 'createdAt', 'updatedAt'],
@@ -44,6 +44,6 @@ export const buscaUsuarioPorEmail = async (email: string): Promise<Usuario | nul
     );
 }
 
-export const removeUsuario = async (id: string): Promise<number> => {
+export const removerUsuario = async (id: string): Promise<number> => {
     return await Usuario.destroy({ where: { id } });
 };
