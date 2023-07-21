@@ -8,7 +8,7 @@ import {
 } from './usuario.service';
 import { UsuarioDto } from './usuario.types';
 
-const index = async (req: Request, res: Response) => {
+export const index = async (req: Request, res: Response) => {
     try {
         const usuarios = await ListarUsuarios();
         res.status(200).json(usuarios);
@@ -16,7 +16,7 @@ const index = async (req: Request, res: Response) => {
         res.status(500).json(e);
     }
 };
-const create = async (req: Request, res: Response) => {
+export const create = async (req: Request, res: Response) => {
     const usuario: UsuarioDto = req.body;
     try {
         const newUsuario = await criarUsuario(usuario);
@@ -25,7 +25,7 @@ const create = async (req: Request, res: Response) => {
         res.status(500).json(e);
     }
 };
-const read = async (req: Request, res: Response) => {
+export const read = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const usuario = await lerUsuario(id);
@@ -36,7 +36,7 @@ const read = async (req: Request, res: Response) => {
         res.status(500).json(e);
     }
 };
-const update = async (req: Request, res: Response) => {
+export const update = async (req: Request, res: Response) => {
     const { id } = req.params;
     const usuario = req.body;
     try {
@@ -48,7 +48,7 @@ const update = async (req: Request, res: Response) => {
         res.status(500).json(e);
     }
 };
-const remove = async (req: Request, res: Response) => {
+export const remove = async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const result = await removerUsuario(id);
@@ -59,5 +59,3 @@ const remove = async (req: Request, res: Response) => {
         res.status(500).json(e);
     }
 };
-
-export default { index, create, read, update, remove };
