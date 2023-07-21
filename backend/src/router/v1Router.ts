@@ -4,6 +4,7 @@ import produtoRouter from '../resources/produto/produto.router';
 import tipoUsuarioRouter from '../resources/tipo-usuario/tipoUsuario.router';
 import usuarioRouter from '../resources/usuario/usuario.router'
 import authRouter from '../resources/auth/auth.router'
+
 const router = Router();
 
 router.use('/ping', pingRouter);
