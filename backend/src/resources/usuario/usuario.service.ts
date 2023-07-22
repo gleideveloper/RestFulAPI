@@ -9,12 +9,12 @@ export const ListarUsuarios = async (): Promise<Usuario[]> => {
 };
 
 export const criarUsuario = async (usuario: UsuarioDto): Promise<UsuarioDto> => {
-
+    console.log(usuario);
     const rounds = parseInt(process.env.SALT_ROUNDS! as string);
     const salt = await bcrypt.genSalt(rounds);
     const hash = await bcrypt.hash(usuario.senha, salt);
     const newUsuario = await Usuario.create({ ...usuario, senha: hash });
-
+    console.log(usuario);
     // delete newUsuarioSemSenha["senha"];
 
     return newUsuario.toJSON();

@@ -1,18 +1,15 @@
 import { Request, Response } from 'express';
 import { buscarUsuarioPorEmail, criarUsuario } from '../usuario/usuario.service';
 import { checkCredentials } from './auth.service';
+import {TipoUsuarios} from "../tipo-usuario/tipoUsuario.constants";
 
 const signup = async (req: Request, res: Response) => {
-    const { nome, email, senha } = req.body;
+    const { tipoUsuarioId, nome, email, senha } = req.body;
     try {
         const usuario = await buscarUsuarioPorEmail(email);
         if (usuario) return res.status(400).json({ msg: 'Já existe um usuario com esse email!' });
 
-        const newUsuario = await criarUsuario({
-            nome,
-            email,
-            senha,
-        });
+        const newUsuario = await criarUsuario({...req.body, tipoUsuarioId: TipoUsuarios.CLIENTE});
         res.status(201).json(newUsuario);
     } catch (e) {
         res.status(500).json(e);
