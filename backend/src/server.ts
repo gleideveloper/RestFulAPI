@@ -16,7 +16,7 @@ import setLocals from './middlewares/setLocals';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import { v4 as uuidv4 } from 'uuid';
-
+import cors from 'cors';
 const models = [VersaoDB, Usuario, TipoUsuario, Produto, Compra, CompraItem];
 
 declare module 'express-session' {
@@ -50,6 +50,7 @@ export class Api {
     }
 
     private async middleware() {
+        this.server.use(cors({credentials:true, origin: 'http://localhost:3333'}));
         this.server.use(express.json());
         this.server.use(cookieParser());
         this.server.use(setLocals);
