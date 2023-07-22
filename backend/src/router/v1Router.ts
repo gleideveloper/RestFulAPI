@@ -9,7 +9,7 @@ const router = Router();
 
 router.use('/ping', pingRouter);
 router.use('/produto', produtoRouter);
-router.use('/tipo-usuario', tipoUsuarioRouter);
 router.use('/usuario', usuarioRouter);
+router.use('/tipo-usuario', tipoUsuarioRouter);
 router.use("/", authRouter)
 export default router;

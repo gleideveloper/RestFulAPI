@@ -1,12 +1,5 @@
-import { Request, Response } from 'express';
-import {
-    ListarUsuarios,
-    criarUsuario,
-    lerUsuario,
-    atualizarUsuario,
-    removerUsuario,
-} from './usuario.service';
-import { UsuarioDto } from './usuario.types';
+import {Request, Response} from 'express';
+import {atualizarUsuario, criarUsuario, lerUsuario, ListarUsuarios, removerUsuario,} from './usuario.service';
 
 const index = async (req: Request, res: Response) => {
     try {
@@ -17,9 +10,8 @@ const index = async (req: Request, res: Response) => {
     }
 };
 const create = async (req: Request, res: Response) => {
-    const usuario: UsuarioDto = req.body;
     try {
-        const newUsuario = await criarUsuario(usuario);
+        const newUsuario = await criarUsuario(req.body);
         res.status(201).json(newUsuario);
     } catch (e) {
         res.status(500).json(e);

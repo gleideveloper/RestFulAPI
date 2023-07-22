@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 
-import { Usuario } from '../../models/Usuario';
-import { UsuarioDto} from './usuario.types';
+import {Usuario} from '../../models/Usuario';
+import {UsuarioDto} from './usuario.types';
 
 export const ListarUsuarios = async (): Promise<Usuario[]> => {
     const usuarios = await Usuario.findAll();
@@ -15,10 +15,9 @@ export const criarUsuario = async (usuario: UsuarioDto): Promise<UsuarioDto> => 
     const hash = await bcrypt.hash(usuario.senha, salt);
     const newUsuario = await Usuario.create({ ...usuario, senha: hash });
 
-    const newUsuarioSemSenha = newUsuario.toJSON();
-    delete newUsuarioSemSenha["senha"];
+    // delete newUsuarioSemSenha["senha"];
 
-    return newUsuarioSemSenha;
+    return newUsuario.toJSON();
 }
 
 export const lerUsuario = async (id: string): Promise<Usuario | null> => {
