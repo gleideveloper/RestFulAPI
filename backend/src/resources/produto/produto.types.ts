@@ -1,5 +1,4 @@
-import { Produto } from '../../models/Produto';
+import {Produto} from "../../models";
 
-type ProdutoDto = Pick<Produto, 'nome' | 'preco' | 'estoque'>;
-
-export { ProdutoDto };
+export type CreateProdutoDto = Pick<Produto, 'nome' | 'preco' | 'estoque'>;
+export type UpdateProdutoDto = Pick<Produto, 'nome' | 'preco' | 'estoque'>;
