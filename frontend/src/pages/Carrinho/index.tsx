@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { ListGroup, ListGroupItem } from "reactstrap";
-import NavBarCustom from "../../components/navbar";
+import NavBarCustom from "../../components/Navbar";
 import { RootState } from "../../redux/store";
 import "./index.css";
 

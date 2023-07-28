@@ -1,13 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap";
-import FormularioProduto from "./components/formProduto";
+import FormularioProduto from "./components/FormProduto";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./redux/store";
 import { fetchProdutos } from "./redux/slices/api.slice.produtos";
-import ProdutosList from "./components/listProdutos";
+import ProdutosList from "./components/ListProdutos";
 import "./index.css";
-import NavBarCustom from "./components/navbar";
+import NavBarCustom from "./components/Navbar";
 
 function App() {
   const { isAdmin } = useSelector((state: RootState) => state.apiLogin);
@@ -36,7 +36,7 @@ function App() {
             </div>
           ) : null}
 
-          <div style={{ overflow: "scroll", height: "400px" }}>
+          <div style={{ overflow: "scroll", height: "630px" }}>
             <ProdutosList />
           </div>
         </div>

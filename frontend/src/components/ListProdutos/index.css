@@ -1,0 +1,13 @@
+/* produtosList.css */
+.table-container {
+    border: 0 solid red;
+}
+
+.product-grid-container {
+    border: 0 solid blue;
+}
+
+.product-grid-item {
+    flex: 0 0 calc(20% - 16px); /* Adjust the width as needed */
+    margin: 8px;
+}

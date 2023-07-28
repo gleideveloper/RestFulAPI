@@ -1,4 +1,4 @@
-/* Estilo para o carrinho */
+/* Estilo para o Carrinho */
 .custom-navbar .cart-counter {
     background-color: #007bff; /* Azul mais claro */
     color: #fff; /* Texto branco */
@@ -10,7 +10,7 @@
 /* Estilo para o botão de logout */
 .custom-navbar .nav-link:last-child {
     color: #fff; /* Texto branco */
-    background-color: #4b65cc; /* Vermelho */
+    background-color: #4b65cc;
     border-radius: 4px;
     padding: 8px 12px;
     font-weight: bold;
@@ -18,12 +18,12 @@
 
 /* Estilo para a navbar do usuário */
 .user-navbar {
-    background-color: #6aeacd; /* Azul mais escuro */
+    background-color: #26c09c;
     color: #000; /* Texto preto */
 }
 
 /* Estilo para a navbar do admin */
 .admin-navbar {
-    background-color: #4791c9; /* Cinza mais escuro */
+    background-color: #2b7bb9;
     color: #fff; /* Texto branco */
 }
