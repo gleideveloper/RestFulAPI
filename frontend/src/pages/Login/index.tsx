@@ -33,7 +33,7 @@ export default function Login() {
     if (isSucess) {
       navigate("/home");
     }
-  }, [isSucess]);
+  }, [isSucess, navigate]);
 
   return (
     <Form style={{ width: "300px" }} className="container">

@@ -18,7 +18,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchProdutos());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="container" style={{ justifyContent: "start" }}>

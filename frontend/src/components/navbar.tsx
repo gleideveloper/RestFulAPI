@@ -1,15 +1,18 @@
-import { useDispatch, useSelector } from "react-redux";
-import { Navbar, NavbarBrand } from "reactstrap";
-import { RootState } from "../redux/store";
-import { useNavigate } from "react-router-dom";
-import { logout } from "../redux/slices/api.slice.login";
-import { NavItem, NavLink } from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
+import {Navbar, NavbarBrand} from "reactstrap";
+import {RootState} from "../redux/store";
+import {useNavigate} from "react-router-dom";
+import {logout} from "../redux/slices/api.slice.login";
+import {NavItem, NavLink} from "react-bootstrap";
+import {FaShoppingCart} from "react-icons/fa";
+import "./NavBarCustom.css"; // Importar o arquivo de estilos
 
 export default function NavBarCustom() {
   const navigate = useNavigate();
-
-  const { isAdmin } = useSelector((state: RootState) => state.apiLogin);
   const dispatch = useDispatch();
+
+  const produto = useSelector((state: RootState) => state.carrinho);
+  const {isAdmin} = useSelector((state: RootState) => state.apiLogin);
 
   function Logout() {
     dispatch(logout());
@@ -17,9 +20,7 @@ export default function NavBarCustom() {
   }
   return (
     <div>
-      <Navbar
-        style={{ position: "sticky", top: "0", backgroundColor: "lightblue" }}
-      >
+        <Navbar className={`custom-navbar ${isAdmin ? "admin-navbar" : "user-navbar"}`}>
         <NavbarBrand>Loja Online</NavbarBrand>
 
         <NavItem onClick={() => navigate("/home")}>
@@ -27,11 +28,15 @@ export default function NavBarCustom() {
         </NavItem>
 
         {/* SE USUARIO ISADMIN MOSTRA OPÇÃO DO CARRINHO */}
-        {!isAdmin ? (
+            {!isAdmin && produto.produtos.length > 0 && (
           <NavItem onClick={() => navigate("/cart")}>
-            <NavLink>Carrinho</NavLink>
+              <NavLink>
+                  Carrinho
+                  <span className="cart-counter">{produto.produtos.length}</span>
+                  <FaShoppingCart/>
+              </NavLink>
           </NavItem>
-        ) : null}
+            )}
 
         <NavItem onClick={() => Logout()}>
           <NavLink>Logout</NavLink>
