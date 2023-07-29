@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Button } from "reactstrap";
 import { RootState } from "../../redux/store";
-import ProductCard from "../ProductCard";
+import ProductCard from "../ProductItem";
 import { Grid } from "@mui/material";
 import "./index.css";
 import {addProdutoNome} from "../../redux/slices/carrinho.slice"; // Replace with the actual path to your CSS file

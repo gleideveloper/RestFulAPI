@@ -1,18 +1,29 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export const carrinhoSlice = createSlice({
-  name: "carrinhoSlice",
-  initialState: {
-    produtos: [] as string[],
-  },
+interface CarrinhoState {
+    produtos: string[];
+}
 
-  reducers: {
-    addProdutoNome(state, action) {
-      state.produtos.push(action.payload);
-      return state;
+const initialState: CarrinhoState = {
+    produtos: [],
+};
+
+const carrinhoSlice = createSlice({
+    name: "carrinhoSlice",
+    initialState,
+    reducers: {
+        addProdutoNome: (state, action: PayloadAction<string>) => {
+            state.produtos.push(action.payload);
+        },
+        removeProdutoNome: (state, action: PayloadAction<number>) => {
+            const index = action.payload;
+            if (index >= 0 && index < state.produtos.length) {
+                state.produtos.splice(index, 1);
+            }
+        },
     },
-  },
 });
 
-export const { addProdutoNome } = carrinhoSlice.actions;
+export const { addProdutoNome, removeProdutoNome } = carrinhoSlice.actions;
+
 export default carrinhoSlice.reducer;

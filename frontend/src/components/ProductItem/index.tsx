@@ -1,11 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import {useDispatch} from 'react-redux';
+import {Button, Card, CardActions, CardContent, CardMedia, Typography} from '@mui/material';
 
-import { addProdutoNome } from '../../redux/slices/carrinho.slice';
-import { Produto } from '../../redux/slices/api.slice.produtos';
-import { configApi } from '../../constans';
+import {addProdutoNome} from '../../redux/slices/carrinho.slice';
+import {Produto} from '../../redux/slices/api.slice.produtos';
 import "./index.css";
+import {configApi} from "../../constans";
 
 interface ProductCardProps {
     children?: React.ReactNode;
@@ -15,7 +15,7 @@ interface ProductCardProps {
 const ProductCard: React.FC<ProductCardProps> = ({ children, product, ...props }) => {
     const dispatch = useDispatch();
 
-    function inserirCarrinho(name: string) {
+    function AdicionarCarrinho(name: string) {
         dispatch(addProdutoNome(name));
     }
 
@@ -23,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ children, product, ...props }
         <Card {...props} sx={{ maxWidth: 345 }}>
             <CardMedia
                 className="card-media"
-                image={configApi.photoUrl}
+                image={configApi.imagemUrl}
                 title="green iguana"
             />
             <CardContent>
@@ -41,13 +41,12 @@ const ProductCard: React.FC<ProductCardProps> = ({ children, product, ...props }
                 <Button
                     size="small"
                     onClick={() => {
-                        inserirCarrinho(product!.nome);
+                        AdicionarCarrinho(product!.nome);
                     }}
                     className="add-to-cart-button"
                 >
-                    Inserir no Carrinho
+                    Adicionar no Carrinho
                 </Button>
-                {/* <Button size="small">Learn More</Button> */}
             </CardActions>
         </Card>
     )
