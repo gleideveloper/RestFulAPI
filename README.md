@@ -1,6 +1,6 @@
-# Web Academy
+# Web Academy - WACAD015 - Gerenciamento de Estado
 
-## Esqueleto de aplicação com backend Express e frontend React.
+## Aplicação com Backend Express e Frontend React com Redux.
 
 Para rodar a aplicação, execute os seguintes comandos:
 
